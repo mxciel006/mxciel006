@@ -24,3 +24,5 @@ jobs:
         with:
           path: docs
       - uses: actions/deploy-pages@v4
+# Nova execução independente evita artefatos duplicados de tentativas anteriores.
+
