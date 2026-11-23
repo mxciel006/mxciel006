@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d1117">
+<meta name="description" content="Stack de desenvolvimento de Miguel de Oliveira Maciel, em visualização interativa e acessível.">
+<title>Stack interativa | Miguel de Oliveira Maciel</title>
+<style>
+:root {color-scheme:dark;--bg:#0d1117;--panel:#111822;--border:#263040;--text:#e6edf3;--muted:#9ba9b8;--accent:#60a5fa;}
+* {box-sizing:border-box}
+body {margin:0;min-height:100vh;background:radial-gradient(circle at 50% -20%,#1a2b45 0,transparent 48%),var(--bg);color:var(--text);font:400 16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main {width:min(930px,calc(100% - 32px));margin:0 auto;padding:55px 0}
+a {color:#8dbbff;text-underline-offset:4px}
+a:hover {color:#c0d9ff}
+.back {display:inline-flex;gap:9px;align-items:center;text-decoration:none;color:var(--muted);font-size:14px}
+h1 {font-size:clamp(28px,4vw,42px);letter-spacing:-.04em;line-height:1.12;margin:28px 0 12px;font-weight:750}
+.subtitle {color:var(--muted);margin:0 0 28px;max-width:730px}
+.panel {position:relative;border:1px solid var(--border);border-radius:22px;background:linear-gradient(145deg,rgba(20,29,42,.94),rgba(13,17,23,.98));box-shadow:0 26px 75px rgba(0,0,0,.23);padding:28px 36px}
+.visual {display:grid;grid-template-columns:minmax(0,1fr) minmax(265px,310px);align-items:center;gap:8px}
+.chart-wrap {width:min(100%,420px);margin:0 auto;position:relative;touch-action:manipulation}
+.chart {display:block;width:100%;height:auto;overflow:visible}
+.slice {cursor:pointer;stroke:#111822;stroke-width:3;transition:transform .24s ease,filter .24s ease,opacity .2s ease;transform-origin:180px 180px;outline:none}
+.chart.has-selection .slice:not(.active) {opacity:.5}
+.slice:hover,.slice.active,.slice:focus-visible {transform:scale(1.045);filter:drop-shadow(0 7px 10px rgba(0,0,0,.38));stroke-width:4}
+.slice:focus-visible {stroke:#e6edf3}
+.legend {list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.legend button {cursor:pointer;background:transparent;border:1px solid transparent;border-radius:12px;padding:12px 13px;color:var(--text);font:500 16px/1.2 inherit;display:flex;align-items:center;gap:13px;width:100%;text-align:left;transition:background .2s,border-color .2s,opacity .2s}
+.legend button:hover,.legend button:focus-visible,.legend button.active {border-color:#334155;background:#1d2939;outline:none}
+.dot {display:inline-block;flex:0 0 13px;width:13px;height:13px;border-radius:4px;background:var(--color)}
+.tooltip {position:absolute;z-index:5;pointer-events:none;min-width:145px;padding:11px 14px;background:#e9f1fc;color:#0f172a;border-radius:11px;border:1px solid rgba(255,255,255,.32);box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:0;transform:translateY(5px);transition:opacity .13s ease,transform .13s ease}
+.tooltip.show {opacity:1;transform:translateY(0)}
+.tooltip b {display:block;font-size:14px;font-weight:700}
+.tooltip span {display:block;color:#334155;font-size:19px;font-weight:750;margin-top:2px}
+.helper {margin:16px 0 0;color:var(--muted);font-size:13px;text-align:center}
+.note {font-size:13px;color:var(--muted);line-height:1.65;margin:22px 4px 0}
+footer {font-size:13px;color:var(--muted);margin-top:34px}
+@media (max-width:700px) {main{padding:30px 0}.panel{padding:15px 12px 20px}.visual{grid-template-columns:1fr;gap:6px}.chart-wrap{max-width:330px}.legend{width:min(100%,390px);margin:auto;gap:2px}.legend button{font-size:15px;padding:9px 11px}.helper{margin:9px 0 0}.subtitle{font-size:14px}.note{font-size:12px}}
+@media (prefers-reduced-motion:reduce) {.slice,.tooltip,.legend button {transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="https://github.com/mxciel006">← Voltar ao GitHub</a>
+<header>
+<h1>Linguagens e foco de atuação</h1>
+<p class="subtitle">Uma visão da minha stack de desenvolvimento. Passe o cursor sobre uma fatia ou toque nela para ver os detalhes.</p>
+</header>
+<section class="panel" aria-label="Gráfico interativo da stack">
+<div class="visual">
+<div class="chart-wrap" id="chart-wrap">
+<svg class="chart" id="chart" viewBox="0 0 360 360" role="group" aria-label="Distribuição ilustrativa por linguagem">
+<circle cx="180" cy="180" r="139" fill="none" stroke="#293445" stroke-width="1"></circle>
+<g id="slices"></g>
+<circle cx="180" cy="180" r="77" fill="#111822" pointer-events="none"></circle>
+<text x="180" y="175" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" fill="#e6edf3" font-weight="700" pointer-events="none">STACK</text>
+<text x="180" y="200" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" fill="#9ba9b8" pointer-events="none">em foco</text>
+</svg>
+<div id="tooltip" class="tooltip" role="tooltip" aria-live="polite" aria-hidden="true"><b id="tooltip-name"></b><span id="tooltip-percent"></span></div>
+</div>
+<ul class="legend" id="legend" aria-label="Legenda do gráfico"></ul>
+</div>
+<p class="helper">Passe o mouse, use Tab ou toque em uma fatia para ver o percentual.</p>
+</section>
+<p class="note">Distribuição editorial ilustrativa das tecnologias que utilizo ou estudo. Os percentuais não foram calculados a partir de linhas de código nem representam proficiência individual.</p>
+<footer><a href="https://github.com/mxciel006/mxciel006">Ver código-fonte</a> · Minimalista Dark · GitHub Pages</footer>
+</main>
+<script>
+(function () {
+"use strict";
+const data=[
+{name:"Python",value:35,color:"#60A5FA"},
+{name:"SQL",value:25,color:"#34D399"},
+{name:"Java",value:20,color:"#A78BFA"},
+{name:"JavaScript / TypeScript",value:15,color:"#FBBF24"},
+{name:"PHP",value:5,color:"#94A3B8"}
+];
+const ns="http://www.w3.org/2000/svg";
+const chart=document.getElementById("chart");
+const wrap=document.getElementById("chart-wrap");
+const slices=document.getElementById("slices");
+const legend=document.getElementById("legend");
+const tooltip=document.getElementById("tooltip");
+const label=document.getElementById("tooltip-name");
+const value=document.getElementById("tooltip-percent");
+const nodes=[];
+const controls=[];
+let pinned=null, current=null;
+function polar(r,a) {const rad=a*Math.PI/180;return [180+r*Math.cos(rad),180+r*Math.sin(rad)];}
+function sector(start,end) {
+const gap=1;start+=gap;end-=gap;
+const a=polar(139,start),b=polar(139,end),c=polar(77,end),d=polar(77,start),big=(end-start>180)?1:0;
+return "M"+a[0]+","+a[1]+" A139,139 0 "+big+",1 "+b[0]+","+b[1]+" L"+c[0]+","+c[1]+" A77,77 0 "+big+",0 "+d[0]+","+d[1]+" Z";
+}
+function clamp(n,min,max) {return Math.max(min,Math.min(max,n));}
+function position(clientX,clientY) {
+const box=wrap.getBoundingClientRect();
+const w=150,h=73;
+let x=clamp(clientX-box.left+14,8,box.width-w-8);
+let y=clamp(clientY-box.top-h-13,7,box.height-h-8);
+tooltip.style.left=x+"px";
+tooltip.style.top=y+"px";
+}
+function activate(index,clientX,clientY) {
+current=index;chart.classList.add("has-selection");
+nodes.forEach((p,i)=>p.classList.toggle("active",i===index));
+controls.forEach((b,i)=>b.classList.toggle("active",i===index));
+label.textContent=data[index].name;
+value.textContent=data[index].value+"%";
+if(Number.isFinite(clientX)&&Number.isFinite(clientY)) {position(clientX,clientY);}
+else {const r=wrap.getBoundingClientRect();position(r.left+r.width*.60,r.top+r.height*.45);}
+tooltip.classList.add("show");tooltip.setAttribute("aria-hidden","false");
+}
+function deactivate() {
+if(pinned!==null){activate(pinned);return;}
+current=null;chart.classList.remove("has-selection");
+nodes.forEach(p=>p.classList.remove("active"));
+controls.forEach(b=>b.classList.remove("active"));
+tooltip.classList.remove("show");tooltip.setAttribute("aria-hidden","true");
+}
+function pin(index,x,y) {
+if(pinned===index) {pinned=null;deactivate();}
+else {pinned=index;activate(index,x,y);}
+}
+let angle=-90;
+data.forEach((item,i)=>{
+const end=angle+item.value*3.6;
+const path=document.createElementNS(ns,"path");
+path.setAttribute("d",sector(angle,end));
+path.setAttribute("fill",item.color);
+path.setAttribute("class","slice");
+path.setAttribute("tabindex","0");
+path.setAttribute("role","button");
+path.setAttribute("aria-label",item.name+" — "+item.value+"%. Ative para fixar o detalhe.");
+path.addEventListener("pointerenter",e=>{if(pinned===null&&e.pointerType!=="touch")activate(i,e.clientX,e.clientY);});
+path.addEventListener("pointermove",e=>{if(pinned===null&&e.pointerType==="mouse")activate(i,e.clientX,e.clientY);});
+path.addEventListener("pointerleave",()=>{if(pinned===null)deactivate();});
+path.addEventListener("focus",()=>{if(pinned===null)activate(i);});
+path.addEventListener("blur",()=>{if(pinned===null)deactivate();});
+path.addEventListener("click",e=>{pin(i,e.clientX,e.clientY);e.stopPropagation();});
+path.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();pin(i);}});
+slices.appendChild(path);nodes.push(path);
+const li=document.createElement("li"),button=document.createElement("button"),dot=document.createElement("span"),text=document.createElement("span");
+button.type="button";button.setAttribute("aria-label",item.name+", mostrar percentual");dot.className="dot";dot.style.setProperty("--color",item.color);text.textContent=item.name;button.append(dot,text);li.appendChild(button);legend.appendChild(li);controls.push(button);
+button.addEventListener("pointerenter",e=>{if(pinned===null&&e.pointerType!=="touch")activate(i);});
+button.addEventListener("pointerleave",()=>{if(pinned===null)deactivate();});
+button.addEventListener("focus",()=>{if(pinned===null)activate(i);});
+button.addEventListener("blur",()=>{if(pinned===null)deactivate();});
+button.addEventListener("click",e=>{e.stopPropagation();pin(i);});
+angle=end;
+});
+document.addEventListener("click",e=>{if(!wrap.contains(e.target)&&!legend.contains(e.target)){pinned=null;deactivate();}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){pinned=null;deactivate();}});
+})();
+</script>
+</body>
+</html>
