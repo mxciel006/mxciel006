@@ -133,22 +133,18 @@ Projeto acadêmico envolvendo modelagem e uso de banco de dados **MySQL** aplica
 
 ## Linguagens e foco de atuação
 
-O GitHub Readme Stats considera principalmente os repositórios públicos elegíveis e **não mede necessariamente minha experiência com cada linguagem**. Para representar também trabalhos profissionais e acadêmicos não publicados, apresento abaixo uma **distribuição editorial ilustrativa da minha stack**. Os percentuais indicam a ênfase que quero dar a cada tecnologia no portfólio, **não são porcentagens medidas de código**.
-
 <div align="center">
+
 <picture>
   <source media="(max-width: 620px)" srcset="./assets/languages-pie-mobile.svg">
-  <img src="./assets/languages-pie-desktop.svg" alt="Gráfico de pizza ilustrativo: Python 35%, SQL 25%, Java 20%, JavaScript/TypeScript 15% e PHP 5%." width="900">
+  <img src="./assets/languages-pie-desktop.svg" alt="Gráfico de rosca com as linguagens Python, SQL, Java, JavaScript/TypeScript e PHP. A distribuição é editorial e ilustrativa." width="760">
 </picture>
+
+**[Explorar gráfico interativo: detalhes ao passar o mouse ou tocar](https://mxciel006.github.io/mxciel006/)**
+
+<sub>Distribuição ilustrativa da minha stack; não corresponde a percentuais medidos de código. A versão interativa requer GitHub Pages ativado.</sub>
+
 </div>
-
-**Python** — automação, validação e processamento de dados.  
-**SQL / MySQL** — consultas, modelagem e análise de dados.  
-**Java** — lógica, orientação a objetos e projetos acadêmicos.  
-**JavaScript / TypeScript** — desenvolvimento web e tecnologias em estudo/uso.  
-**PHP** — fundamentos de back-end desenvolvidos na formação técnica.
-
-> Leitura do gráfico: Python 35% · SQL 25% · Java 20% · JavaScript/TypeScript 15% · PHP 5%. Esses pesos são ilustrativos e podem ser recalibrados com base em métricas reais de projetos, caso seus códigos sejam disponibilizados com autorização.
 
 ---
 
