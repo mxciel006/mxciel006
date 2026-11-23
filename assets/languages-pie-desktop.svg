@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" role="img" aria-labelledby="title desc">
+<title id="title">Distribuição ilustrativa da stack: Python 35%, SQL 25%, Java 20%, JavaScript/TypeScript 15%, PHP 5%</title>
+<desc id="desc">Gráfico de pizza dos pesos editoriais usados para apresentar as linguagens do portfólio. Não representa proporções reais de código do GitHub.</desc>
+<rect x="1" y="1" width="898" height="438" rx="20" fill="#0D1117" stroke="#30363D" stroke-width="2"/>
+<text x="38" y="52" fill="#F0F6FC" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">Ênfase da stack e linguagens de atuação</text>
+<text x="38" y="80" fill="#8B949E" font-family="Arial, Helvetica, sans-serif" font-size="16">Foco de desenvolvimento e experiência acadêmica</text>
+<path d="M 220 250 L 220.00 106.00 A 144 144 0 0 1 336.50 334.64 Z" fill="#58A6FF" stroke="#0D1117" stroke-width="3"><title>Python: 35%</title></path>
+  <path d="M 220 250 L 336.50 334.64 A 144 144 0 0 1 135.36 366.50 Z" fill="#3FB950" stroke="#0D1117" stroke-width="3"><title>SQL: 25%</title></path>
+  <path d="M 220 250 L 135.36 366.50 A 144 144 0 0 1 83.05 205.50 Z" fill="#B392F0" stroke="#0D1117" stroke-width="3"><title>Java: 20%</title></path>
+  <path d="M 220 250 L 83.05 205.50 A 144 144 0 0 1 175.50 113.05 Z" fill="#F2CC60" stroke="#0D1117" stroke-width="3"><title>JavaScript / TypeScript: 15%</title></path>
+  <path d="M 220 250 L 175.50 113.05 A 144 144 0 0 1 220.00 106.00 Z" fill="#8B949E" stroke="#0D1117" stroke-width="3"><title>PHP: 5%</title></path>
+<rect x="455" y="124" width="21" height="21" rx="5" fill="#58A6FF" />
+  <text x="492" y="142" font-size="22" font-family="Arial, Helvetica, sans-serif" fill="#E6EDF3">Python</text>
+  <text x="826" y="142" text-anchor="end" font-size="23" font-family="Arial, Helvetica, sans-serif" fill="#F0F6FC" font-weight="700">35%</text>
+  <rect x="455" y="176" width="21" height="21" rx="5" fill="#3FB950" />
+  <text x="492" y="194" font-size="22" font-family="Arial, Helvetica, sans-serif" fill="#E6EDF3">SQL</text>
+  <text x="826" y="194" text-anchor="end" font-size="23" font-family="Arial, Helvetica, sans-serif" fill="#F0F6FC" font-weight="700">25%</text>
+  <rect x="455" y="228" width="21" height="21" rx="5" fill="#B392F0" />
+  <text x="492" y="246" font-size="22" font-family="Arial, Helvetica, sans-serif" fill="#E6EDF3">Java</text>
+  <text x="826" y="246" text-anchor="end" font-size="23" font-family="Arial, Helvetica, sans-serif" fill="#F0F6FC" font-weight="700">20%</text>
+  <rect x="455" y="280" width="21" height="21" rx="5" fill="#F2CC60" />
+  <text x="492" y="298" font-size="22" font-family="Arial, Helvetica, sans-serif" fill="#E6EDF3">JavaScript / TypeScript</text>
+  <text x="826" y="298" text-anchor="end" font-size="23" font-family="Arial, Helvetica, sans-serif" fill="#F0F6FC" font-weight="700">15%</text>
+  <rect x="455" y="332" width="21" height="21" rx="5" fill="#8B949E" />
+  <text x="492" y="350" font-size="22" font-family="Arial, Helvetica, sans-serif" fill="#E6EDF3">PHP</text>
+  <text x="826" y="350" text-anchor="end" font-size="23" font-family="Arial, Helvetica, sans-serif" fill="#F0F6FC" font-weight="700">5%</text>
+<text x="38" y="414" fill="#8B949E" font-family="Arial, Helvetica, sans-serif" font-size="14">Pesos de apresentação do portfólio — não representam estatísticas de código.</text>
+</svg>
