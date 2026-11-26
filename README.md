@@ -1,6 +1,6 @@
 <div align="center">
 
-# Maciel
+# Miguel de O. Maciel
 
 ### Automação de Processos | Python | SQL | Desenvolvimento de Software
 
